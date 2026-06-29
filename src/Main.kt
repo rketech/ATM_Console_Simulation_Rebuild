@@ -13,29 +13,33 @@ fun main() {
     println("=================================")
     println("")
 
-    Thread.sleep(1000)
+    fun pause(){
+        Thread.sleep(1000)
+    }
+
+    pause()
 
     println("Welcome! Please enter your ATM card...")
 
-    Thread.sleep(1000)
+    pause()
 
     var loginAttempt = 0
 
     do {
         println("")
-        Thread.sleep(1000)
+        pause()
 
         print("Please enter your 4-Digit PIN: ")
         val enteredPin: String? = readlnOrNull()
 
-        Thread.sleep(1000)
+        pause()
         println("")
 
         if (enteredPin.isNullOrBlank()) {
             println("PIN cannot be empty")
             loginAttempt++
         } else if (enteredPin == pin) {
-            println("PIN verified successfully")
+            println("Login Successful")
             return
         } else {
             println("Incorrect PIN")
@@ -44,13 +48,13 @@ fun main() {
         }
     } while (loginAttempt < 3)
 
-    Thread.sleep(1000)
+    pause()
 
     println("")
 
     println("Account Locked!")
 
-    Thread.sleep(1000)
+    pause()
 
     println("Exiting ATM...")
 }
