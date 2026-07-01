@@ -30,35 +30,35 @@ fun displayMainMenu(customerName: String, accountNumber: String): String? {
     return menuChoice
 }
 
-fun showBalance(){
+fun showBalance() {
     println("Balance Inquiry feature is under development.")
 }
 
-fun depositMoney(){
+fun depositMoney() {
     println("Deposit feature is under development.")
 }
 
-fun withdrawMoney(){
+fun withdrawMoney() {
     println("Withdraw feature is under development.")
 }
 
-fun transferFunds(){
+fun transferFunds() {
     println("Transfer feature is under development.")
 }
 
-fun changePin(){
+fun changePin() {
     println("Change pin feature is under development.")
 }
 
-fun miniStatement(){
+fun miniStatement() {
     println("Mini statement feature is under development.")
 }
 
-fun updatePhoneNumber(){
+fun updatePhoneNumber() {
     println("Update phone number feature is under development.")
 }
 
-fun fastCash(){
+fun fastCash() {
     println("Fast Cash feature is under development.")
 }
 
@@ -91,6 +91,7 @@ fun main() {
 
     var loginAttempt = 0
 
+
     // Login Loop - Start
     do {
         println("")
@@ -107,6 +108,8 @@ fun main() {
             loginAttempt++
         } else if (enteredPin == pin) {
             println("Login Successful")
+            var isSessionActive = true
+            println("Session : $isSessionActive") // Printing session just for testing
             // Menu Loop - Start
             do {
                 val menuChoice = displayMainMenu(
@@ -115,42 +118,60 @@ fun main() {
                 ) // Here main() has the customer's answer that the displayMainMenu() is returning
                 when (menuChoice) {
                     "1" -> {
-                        println("Selected : Balance Inquiry")
+                        pause(500)
+                        println("Selected : Balance Inquiry | Session : $isSessionActive")
+                        showBalance()
                     }
 
                     "2" -> {
-                        println("Selected : Deposit")
+                        pause(500)
+                        println("Selected : Deposit | Session : $isSessionActive")
+                        depositMoney()
                     }
 
                     "3" -> {
-                        println("Selected : Withdrawal")
+                        pause(500)
+                        println("Selected : Withdrawal | Session : $isSessionActive")
+                        withdrawMoney()
                     }
 
                     "4" -> {
-                        println("Selected : Fund Transfer")
+                        pause(500)
+                        println("Selected : Fund Transfer | Session : $isSessionActive")
+                        transferFunds()
                     }
 
                     "5" -> {
-                        println("Selected : Pin Change")
+                        pause(500)
+                        println("Selected : Pin Change | Session : $isSessionActive")
+                        changePin()
                     }
 
                     "6" -> {
-                        println("Selected : Mini Statement")
+                        pause(500)
+                        println("Selected : Mini Statement | Session : $isSessionActive")
+                        miniStatement()
                     }
 
                     "7" -> {
-                        println("Selected : Update Phone Number")
+                        pause(500)
+                        println("Selected : Update Phone Number | Session : $isSessionActive")
+                        updatePhoneNumber()
                     }
 
                     "8" -> {
-                        println("Selected : Fast Cash")
+                        pause(500)
+                        println("Selected : Fast Cash | Session : $isSessionActive")
+                        fastCash()
                     }
 
                     "9" -> {
-                        println("Selected : Exit")
+                        pause(500)
+                        isSessionActive = false
+                        println("Selected : Exit | Session : $isSessionActive")
                     }
                 }
-            } while (menuChoice != "9") // Menu Loop - End
+            } while (isSessionActive != false) // Menu Loop - End
             return
         } else {
             println("Incorrect PIN")
