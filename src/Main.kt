@@ -1,12 +1,15 @@
-/* displayMainMenu function */
-fun displayMainMenu(customerName: String, accountNumber: String): String? {
-
+/* displayWelcomeHeader function once per session */
+fun displayWelcomeHeader(customerName: String, accountNumber: String) {
     // Display welcome message
     println("")
     println("------------------------")
     println(" Welcome, $customerName!")
     println(" Account Number : $accountNumber")
     println("------------------------")
+}
+
+/* displayMainMenu function */
+fun displayMainMenu(): String? {
 
     // Display menu
     println("")
@@ -30,8 +33,11 @@ fun displayMainMenu(customerName: String, accountNumber: String): String? {
     return menuChoice
 }
 
-fun showBalance() {
-    println("Balance Inquiry feature is under development.")
+fun showBalance(balance: Double) {
+    println("---------------------------")
+    println("     Balance Enquiry       ")
+    println(" Available Balance: $balance")
+    println("---------------------------")
 }
 
 fun depositMoney() {
@@ -67,6 +73,7 @@ fun pause(milliseconds: Long = 1000) {
     Thread.sleep(milliseconds)
 }
 
+// main() is acting as the controller
 fun main() {
     /*     Permanent Values - This is customer data.    */
     val customerName = "Rakesh Sharma"
@@ -109,69 +116,64 @@ fun main() {
         } else if (enteredPin == pin) {
             println("Login Successful")
             var isSessionActive = true
-            println("Session : $isSessionActive") // Printing session just for testing
+            displayWelcomeHeader(customerName, accountNumber)
             // Menu Loop - Start
             do {
-                val menuChoice = displayMainMenu(
-                    customerName,
-                    accountNumber
-                ) // Here main() has the customer's answer that the displayMainMenu() is returning
+                val menuChoice =
+                    displayMainMenu() // Here main() has the customer's answer that the displayMainMenu() is returning
                 when (menuChoice) {
                     "1" -> {
                         pause(500)
-                        println("Selected : Balance Inquiry | Session : $isSessionActive")
-                        showBalance()
+                        showBalance(balance)
                     }
 
                     "2" -> {
                         pause(500)
-                        println("Selected : Deposit | Session : $isSessionActive")
                         depositMoney()
                     }
 
                     "3" -> {
                         pause(500)
-                        println("Selected : Withdrawal | Session : $isSessionActive")
                         withdrawMoney()
                     }
 
                     "4" -> {
                         pause(500)
-                        println("Selected : Fund Transfer | Session : $isSessionActive")
                         transferFunds()
                     }
 
                     "5" -> {
                         pause(500)
-                        println("Selected : Pin Change | Session : $isSessionActive")
                         changePin()
                     }
 
                     "6" -> {
                         pause(500)
-                        println("Selected : Mini Statement | Session : $isSessionActive")
                         miniStatement()
                     }
 
                     "7" -> {
                         pause(500)
-                        println("Selected : Update Phone Number | Session : $isSessionActive")
                         updatePhoneNumber()
                     }
 
                     "8" -> {
                         pause(500)
-                        println("Selected : Fast Cash | Session : $isSessionActive")
                         fastCash()
                     }
 
                     "9" -> {
                         pause(500)
                         isSessionActive = false
-                        println("Selected : Exit | Session : $isSessionActive")
+                        println("Thank you for banking with Rakesh Bank.")
+                        println("Please collect your card.")
+                    }
+
+                    else -> {
+                        println("Invalid Menu Choice")
                     }
                 }
-            } while (isSessionActive != false) // Menu Loop - End
+            } while (isSessionActive) // Menu Loop - End
             return
         } else {
             println("Incorrect PIN")
