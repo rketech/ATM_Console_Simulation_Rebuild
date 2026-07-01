@@ -9,7 +9,7 @@ fun displayWelcomeHeader(customerName: String, accountNumber: String) {
 }
 
 /* displayMainMenu function */
-fun displayMainMenu(): String? {
+fun displayMainMenu(): String {
 
     // Display menu
     println("")
@@ -27,7 +27,7 @@ fun displayMainMenu(): String? {
 
     // Read user's choice
     print("Please enter your choice : ")
-    val menuChoice: String? = readlnOrNull()
+    val menuChoice: String = readln()
 
     // Return the choice
     return menuChoice
@@ -69,7 +69,7 @@ fun fastCash() {
 }
 
 // Created universal time delay function for better user experience displaying content
-fun pause(milliseconds: Long = 1000) {
+fun pause(milliseconds: Long = 500) {
     Thread.sleep(milliseconds)
 }
 
@@ -123,47 +123,47 @@ fun main() {
                     displayMainMenu() // Here main() has the customer's answer that the displayMainMenu() is returning
                 when (menuChoice) {
                     "1" -> {
-                        pause(500)
+                        pause()
                         showBalance(balance)
                     }
 
                     "2" -> {
-                        pause(500)
+                        pause()
                         depositMoney()
                     }
 
                     "3" -> {
-                        pause(500)
+                        pause()
                         withdrawMoney()
                     }
 
                     "4" -> {
-                        pause(500)
+                        pause()
                         transferFunds()
                     }
 
                     "5" -> {
-                        pause(500)
+                        pause()
                         changePin()
                     }
 
                     "6" -> {
-                        pause(500)
+                        pause()
                         miniStatement()
                     }
 
                     "7" -> {
-                        pause(500)
+                        pause()
                         updatePhoneNumber()
                     }
 
                     "8" -> {
-                        pause(500)
+                        pause()
                         fastCash()
                     }
 
                     "9" -> {
-                        pause(500)
+                        pause()
                         isSessionActive = false
                         println("Thank you for banking with Rakesh Bank.")
                         println("Please collect your card.")

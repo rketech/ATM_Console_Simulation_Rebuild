@@ -123,3 +123,22 @@ Every function comes back to main().
 No function knows who comes next.
 
 That makes every feature independent.
+
+Presentation Layer
+    displayWelcomeHeader()
+    displayMainMenu()
+    showBalance()
+        These functions interact with the user.
+
+Controller Layer
+    main()
+        Coordinates the application.
+
+Business Layer
+Currently placeholders:
+    depositMoney()
+    withdrawMoney()
+    transferFunds()
+        Soon they'll contain the banking logic.
+
+This separation is used in professional applications.
