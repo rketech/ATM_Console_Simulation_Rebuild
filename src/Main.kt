@@ -30,9 +30,41 @@ fun displayMainMenu(customerName: String, accountNumber: String): String? {
     return menuChoice
 }
 
+fun showBalance(){
+    println("Balance Inquiry feature is under development.")
+}
+
+fun depositMoney(){
+    println("Deposit feature is under development.")
+}
+
+fun withdrawMoney(){
+    println("Withdraw feature is under development.")
+}
+
+fun transferFunds(){
+    println("Transfer feature is under development.")
+}
+
+fun changePin(){
+    println("Change pin feature is under development.")
+}
+
+fun miniStatement(){
+    println("Mini statement feature is under development.")
+}
+
+fun updatePhoneNumber(){
+    println("Update phone number feature is under development.")
+}
+
+fun fastCash(){
+    println("Fast Cash feature is under development.")
+}
+
 // Created universal time delay function for better user experience displaying content
-fun pause() {
-    Thread.sleep(1000)
+fun pause(milliseconds: Long = 1000) {
+    Thread.sleep(milliseconds)
 }
 
 fun main() {
@@ -59,6 +91,7 @@ fun main() {
 
     var loginAttempt = 0
 
+    // Login Loop - Start
     do {
         println("")
         pause()
@@ -74,8 +107,12 @@ fun main() {
             loginAttempt++
         } else if (enteredPin == pin) {
             println("Login Successful")
+            // Menu Loop - Start
             do {
-                val menuChoice = displayMainMenu(customerName, accountNumber)
+                val menuChoice = displayMainMenu(
+                    customerName,
+                    accountNumber
+                ) // Here main() has the customer's answer that the displayMainMenu() is returning
                 when (menuChoice) {
                     "1" -> {
                         println("Selected : Balance Inquiry")
@@ -113,14 +150,14 @@ fun main() {
                         println("Selected : Exit")
                     }
                 }
-            } while (menuChoice != "9")
+            } while (menuChoice != "9") // Menu Loop - End
             return
         } else {
             println("Incorrect PIN")
             loginAttempt++
             println("Remaining Attempts: ${3 - loginAttempt}")
         }
-    } while (loginAttempt < 3)
+    } while (loginAttempt < 3) // // Login Loop - End
 
     pause()
 

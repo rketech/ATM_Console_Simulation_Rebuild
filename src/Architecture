@@ -1,0 +1,125 @@
+main()
+│
+├── Login Loop
+│
+├── displayMainMenu()
+│
+├── showBalance()
+│
+├── depositMoney()
+│
+├── withdrawMoney()
+│
+├── transferFunds()
+│
+├── changePin()
+│
+├── miniStatement()
+│
+├── updatePhoneNumber()
+│
+└── fastCash()
+
+Every function has a single responsibility.
+
+The Controller - main() does not perform the work.
+
+The Controller - main() decides who should perform the work.
+
+Let's imagine the ATM as a company
+
+Imagine this company.
+
+                    ATM Manager
+                        │
+     ┌──────────────────┼──────────────────┐
+     │                  │                  │
+ Balance Dept      Deposit Dept     Withdrawal Dept
+
+Who talks to the customer?
+
+The manager.
+
+Who performs the deposit?
+
+The Deposit Department.
+
+Who shows the balance?
+
+The Balance Department.
+
+The manager never counts the money himself.
+
+He simply delegates the work.
+
+Translate this into our program
+
+Who is the ATM Manager?
+
+main()
+
+Exactly.
+
+Who is the Balance Department?
+
+showBalance()
+
+Who is the Deposit Department?
+
+depositMoney()
+
+Who is the Withdrawal Department?
+
+withdrawMoney()
+
+See what's happening?
+
+Every function is becoming an employee.
+
+Earlier, main() did everything.
+
+Now main() should do almost nothing except coordinate.
+
+Think of it like this:
+
+Customer chooses option
+
+↓
+
+main receives the choice
+
+↓
+
+main delegates the work
+
+↓
+
+Feature finishes
+
+↓
+
+main shows the menu again
+
+This pattern is used everywhere in software.
+
+Imagine this architecture:
+
+                 main()
+                    │
+        ┌───────────┼───────────┐
+        │           │           │
+        ▼           ▼           ▼
+showBalance()  depositMoney()  withdrawMoney()
+        │           │           │
+        └───────────┴───────────┘
+                    │
+                 returns
+                    │
+                    ▼
+                 main()
+
+Every function comes back to main().
+
+No function knows who comes next.
+
+That makes every feature independent.
