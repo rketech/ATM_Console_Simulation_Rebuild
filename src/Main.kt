@@ -69,11 +69,11 @@ fun pause(milliseconds: Long = 1000) {
 
 fun main() {
     /*     Permanent Values - This is customer data.    */
-    val customerName: String = "Rakesh Sharma"
-    val accountNumber: String = "AC001"
-    val pin: String = "0123"
-    val balance: Double = 25000.0
-    val phoneNumber: String = "9797979797"
+    val customerName = "Rakesh Sharma"
+    val accountNumber = "AC001"
+    val pin = "0123"
+    val balance = 25000.0
+    val phoneNumber = "9797979797"
 
     /* ATM Operation - This is business logic. */
     println("")
