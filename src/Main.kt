@@ -36,12 +36,41 @@ fun displayMainMenu(): String {
 fun showBalance(balance: Double) {
     println("---------------------------")
     println("     Balance Enquiry       ")
-    println(" Available Balance: $balance")
     println("---------------------------")
+    println(" Available Balance: $balance")
 }
 
-fun depositMoney() {
-    println("Deposit feature is under development.")
+fun depositMoney(balance: Double): Double {
+
+    println("---------------------------")
+    println("     Deposit Money         ")
+    println("---------------------------")
+
+    print("Enter the deposit amount : ")
+    val userInputDepositAmount = readln()
+
+    if (userInputDepositAmount.isBlank()) {
+        println("Please enter a valid deposit amount")
+        return balance
+    }
+
+    val depositAmount = userInputDepositAmount.toDoubleOrNull()
+
+    if (depositAmount == null) {
+        println("Please enter number only")
+        return balance
+    }
+
+    if (depositAmount <= 0.0) {
+        println("Deposit amount must be more than Zero.")
+        return balance
+    }
+
+    println("Deposit Successful!")
+    println("Previous Balance : $balance")
+    println("Deposit Amount : $depositAmount")
+    println("Updated Balance : ${balance + depositAmount}")
+    return balance + depositAmount
 }
 
 fun withdrawMoney() {
@@ -79,7 +108,7 @@ fun main() {
     val customerName = "Rakesh Sharma"
     val accountNumber = "AC001"
     val pin = "0123"
-    val balance = 25000.0
+    var balance = 25000.0
     val phoneNumber = "9797979797"
 
     /* ATM Operation - This is business logic. */
@@ -129,7 +158,7 @@ fun main() {
 
                     "2" -> {
                         pause()
-                        depositMoney()
+                        balance = depositMoney(balance) // I gave the Deposit Department the current balance, and now I'm storing the updated balance.
                     }
 
                     "3" -> {
