@@ -72,11 +72,12 @@ fun depositMoney(balance: Double): Double {
             continue
         }
 
+        val updatedBalance = balance + depositAmount
         println("Deposit Successful!")
         println("Previous Balance : $balance")
         println("Deposit Amount : $depositAmount")
-        println("Updated Balance : ${balance + depositAmount}")
-        return balance + depositAmount
+        println("Updated Balance : $updatedBalance")
+        return updatedBalance
     } while (true)
 }
 
