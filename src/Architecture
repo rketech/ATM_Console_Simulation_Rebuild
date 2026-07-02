@@ -1,3 +1,5 @@
+First understand the business. Then design the data. Finally choose the Kotlin data structure.
+
 main()
 │
 ├── Login Loop

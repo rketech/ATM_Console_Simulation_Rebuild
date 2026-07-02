@@ -11,6 +11,7 @@ fun displayWelcomeHeader(customerName: String, accountNumber: String) {
 /* displayMainMenu function */
 fun displayMainMenu(): String {
 
+    pause()
     // Display menu
     println("")
     println("Please select a service")
@@ -67,16 +68,28 @@ fun depositMoney(balance: Double): Double {
             return balance
         }
 
-        if (depositAmount <= 0.0) {
+        if (depositAmount < 0.0) {
             println("Deposit amount must be more than Zero.")
             continue
         }
 
         val updatedBalance = balance + depositAmount
-        println("Deposit Successful!")
-        println("Previous Balance : $balance")
-        println("Deposit Amount : $depositAmount")
-        println("Updated Balance : $updatedBalance")
+        pause()
+        println("------------------------------------")
+        println("          Deposit Receipt           ")
+        println("------------------------------------")
+        pause(500)
+        println("Status             :   Successful")
+        pause(500)
+        println("Previous Balance   :   $balance")
+        pause(500)
+        println("Deposit Amount     :   $depositAmount")
+        pause(500)
+        println("Updated Balance    :   $updatedBalance")
+        println("------------------------------------")
+        pause()
+        println("")
+        println("Returning to Main Menu...")
         return updatedBalance
     } while (true)
 }
@@ -106,7 +119,7 @@ fun fastCash() {
 }
 
 // Created universal time delay function for better user experience displaying content
-fun pause(milliseconds: Long = 500) {
+fun pause(milliseconds: Long = 999) {
     Thread.sleep(milliseconds)
 }
 
