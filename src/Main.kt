@@ -46,31 +46,38 @@ fun depositMoney(balance: Double): Double {
     println("     Deposit Money         ")
     println("---------------------------")
 
-    print("Enter the deposit amount : ")
-    val userInputDepositAmount = readln()
+    do {
+        print("Enter deposit amount (0 to cancel): ")
+        val userInputDepositAmount = readln()
 
-    if (userInputDepositAmount.isBlank()) {
-        println("Please enter a valid deposit amount")
-        return balance
-    }
+        if (userInputDepositAmount.isBlank()) {
+            println("Please enter a valid deposit amount")
+            continue
+        }
 
-    val depositAmount = userInputDepositAmount.toDoubleOrNull()
+        val depositAmount = userInputDepositAmount.toDoubleOrNull()
 
-    if (depositAmount == null) {
-        println("Please enter number only")
-        return balance
-    }
+        if (depositAmount == null) {
+            println("Please enter number only")
+            continue
+        }
 
-    if (depositAmount <= 0.0) {
-        println("Deposit amount must be more than Zero.")
-        return balance
-    }
+        if (depositAmount == 0.0) {
+            println("Deposit Canceled.")
+            return balance
+        }
 
-    println("Deposit Successful!")
-    println("Previous Balance : $balance")
-    println("Deposit Amount : $depositAmount")
-    println("Updated Balance : ${balance + depositAmount}")
-    return balance + depositAmount
+        if (depositAmount <= 0.0) {
+            println("Deposit amount must be more than Zero.")
+            continue
+        }
+
+        println("Deposit Successful!")
+        println("Previous Balance : $balance")
+        println("Deposit Amount : $depositAmount")
+        println("Updated Balance : ${balance + depositAmount}")
+        return balance + depositAmount
+    } while (true)
 }
 
 fun withdrawMoney() {
@@ -158,7 +165,8 @@ fun main() {
 
                     "2" -> {
                         pause()
-                        balance = depositMoney(balance) // I gave the Deposit Department the current balance, and now I'm storing the updated balance.
+                        balance =
+                            depositMoney(balance) // I gave the Deposit Department the current balance, and now I'm storing the updated balance.
                     }
 
                     "3" -> {
