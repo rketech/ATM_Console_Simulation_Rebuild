@@ -142,3 +142,5 @@ Currently placeholders:
         Soon they'll contain the banking logic.
 
 This separation is used in professional applications.
+
+first feature with real business logic And I want to start with... Deposit - Deposit is our first state-changing operation

@@ -114,7 +114,7 @@ fun main() {
             println("PIN cannot be empty")
             loginAttempt++
         } else if (enteredPin == pin) {
-            println("Login Successful")
+            println("PIN Verified Successfully.")
             var isSessionActive = true
             displayWelcomeHeader(customerName, accountNumber)
             // Menu Loop - Start
