@@ -110,17 +110,17 @@ fun depositMoney(accountNumber: String, balance: Double, transactionHistory: Mut
         val time = getCurrentTime()
         val transactionType = "DEPOSIT"
         val transactionStatus = "Success"
-        transactionHistory.add(
-            Transaction(
-                accountNumber = accountNumber,
-                transactionType = transactionType,
-                transactionAmount = depositAmount,
-                balance = updatedBalance,
-                transactionDate = date,
-                transactionTime = time,
-                transactionStatus = transactionStatus
-            )
+
+        val transaction = Transaction(
+            accountNumber = accountNumber,
+            transactionType = transactionType,
+            transactionAmount = depositAmount,
+            balance = updatedBalance,
+            transactionDate = date,
+            transactionTime = time,
+            transactionStatus = transactionStatus
         )
+        transactionHistory.add(transaction)
 
         println("Your cash has been deposited successfully!")
         pause()
