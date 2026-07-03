@@ -2,16 +2,25 @@ import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 
+/* Transaction → Data Model */
 /* Custom Data Type (Think of it as creating a new data type, just like String, Double, or Boolean.) - Blueprint just like a blank form for students or customers to fill in */
 data class Transaction(
     val accountNumber: String,
     val transactionType: String,
     val transactionAmount: Double,
     val balance: Double,
-    val date: String,
-    val time: String,
-    val status: String
+    val transactionDate: String,
+    val transactionTime: String,
+    val transactionStatus: String
 )
+
+fun printCustomLongLine(){
+    println("------------------------------------")
+}
+
+fun printCustomShortLine(){
+    println("---------------------------")
+}
 
 fun getCurrentDate(): String {
     return LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
@@ -25,10 +34,10 @@ fun getCurrentTime(): String {
 fun displayWelcomeHeader(customerName: String, accountNumber: String) {
     // Display welcome message
     println("")
-    println("------------------------")
+    printCustomShortLine()
     println(" Welcome, $customerName!")
     println(" Account Number : $accountNumber")
-    println("------------------------")
+    printCustomShortLine()
 }
 
 /* displayMainMenu function */
@@ -58,17 +67,17 @@ fun displayMainMenu(): String {
 }
 
 fun showBalance(balance: Double) {
-    println("---------------------------")
+    printCustomShortLine()
     println("     Balance Enquiry       ")
-    println("---------------------------")
+    printCustomShortLine()
     println(" Available Balance: $balance")
 }
 
 fun depositMoney(accountNumber: String, balance: Double, transactionHistory: MutableList<Transaction>): Double {
 
-    println("---------------------------")
+    printCustomShortLine()
     println("     Deposit Money         ")
-    println("---------------------------")
+    printCustomShortLine()
 
     do {
         print("Enter deposit amount (0 to cancel): ")
@@ -99,27 +108,29 @@ fun depositMoney(accountNumber: String, balance: Double, transactionHistory: Mut
         val updatedBalance = balance + depositAmount
         val date = getCurrentDate()
         val time = getCurrentTime()
+        val transactionType = "DEPOSIT"
+        val transactionStatus = "Success"
         transactionHistory.add(
             Transaction(
                 accountNumber = accountNumber,
-                transactionType = "DEPOSIT",
+                transactionType = transactionType,
                 transactionAmount = depositAmount,
                 balance = updatedBalance,
-                date = date,
-                time = time,
-                status = "Success"
+                transactionDate = date,
+                transactionTime = time,
+                transactionStatus = transactionStatus
             )
         )
 
         println("Your cash has been deposited successfully!")
         pause()
-        println("------------------------------------")
+        printCustomLongLine()
         println("        Transaction Receipt         ")
-        println("------------------------------------")
+        printCustomLongLine()
         pause()
         println("Account Number     :   $accountNumber")
         pause()
-        println("Type               :   DEPOSIT")
+        println("Type               :   $transactionType")
         pause()
         println("Previous Balance   :   $balance")
         pause()
@@ -127,12 +138,12 @@ fun depositMoney(accountNumber: String, balance: Double, transactionHistory: Mut
         pause()
         println("Updated Balance    :   $updatedBalance")
         pause()
-        println("Status             :   Successful")
+        println("Status             :   $transactionStatus")
         pause()
         println("Date (dd/mm/yyy)   :   $date")
         pause()
         println("Time (hh/mm/ss)    :   $time")
-        println("------------------------------------")
+        printCustomLongLine()
         pause()
         println("")
         println("Returning to Main Menu...")
