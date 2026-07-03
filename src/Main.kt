@@ -1,3 +1,26 @@
+import java.time.LocalDate
+import java.time.LocalTime
+import java.time.format.DateTimeFormatter
+
+/* Custom Data Type (Think of it as creating a new data type, just like String, Double, or Boolean.) - Blueprint just like a blank form for students or customers to fill in */
+data class Transaction(
+    val accountNumber: String,
+    val transactionType: String,
+    val transactionAmount: Double,
+    val balance: Double,
+    val date: String,
+    val time: String,
+    val status: String
+)
+
+fun getCurrentDate(): String {
+    return LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+}
+
+fun getCurrentTime(): String {
+    return LocalTime.now().format(DateTimeFormatter.ofPattern("hh:mm:ss a"))
+}
+
 /* displayWelcomeHeader function once per session */
 fun displayWelcomeHeader(customerName: String, accountNumber: String) {
     // Display welcome message
@@ -41,7 +64,7 @@ fun showBalance(balance: Double) {
     println(" Available Balance: $balance")
 }
 
-fun depositMoney(balance: Double): Double {
+fun depositMoney(accountNumber: String, balance: Double, transactionHistory: MutableList<Transaction>): Double {
 
     println("---------------------------")
     println("     Deposit Money         ")
@@ -74,18 +97,41 @@ fun depositMoney(balance: Double): Double {
         }
 
         val updatedBalance = balance + depositAmount
+        val date = getCurrentDate()
+        val time = getCurrentTime()
+        transactionHistory.add(
+            Transaction(
+                accountNumber = accountNumber,
+                transactionType = "DEPOSIT",
+                transactionAmount = depositAmount,
+                balance = updatedBalance,
+                date = date,
+                time = time,
+                status = "Success"
+            )
+        )
+
+        println("Your cash has been deposited successfully!")
         pause()
         println("------------------------------------")
-        println("          Deposit Receipt           ")
+        println("        Transaction Receipt         ")
         println("------------------------------------")
-        pause(500)
-        println("Status             :   Successful")
-        pause(500)
+        pause()
+        println("Account Number     :   $accountNumber")
+        pause()
+        println("Type               :   DEPOSIT")
+        pause()
         println("Previous Balance   :   $balance")
-        pause(500)
+        pause()
         println("Deposit Amount     :   $depositAmount")
-        pause(500)
+        pause()
         println("Updated Balance    :   $updatedBalance")
+        pause()
+        println("Status             :   Successful")
+        pause()
+        println("Date (dd/mm/yyy)   :   $date")
+        pause()
+        println("Time (hh/mm/ss)    :   $time")
         println("------------------------------------")
         pause()
         println("")
@@ -131,6 +177,7 @@ fun main() {
     val pin = "0123"
     var balance = 25000.0
     val phoneNumber = "9797979797"
+    val transactionHistory = mutableListOf<Transaction>() // Create an empty list that will store Transaction objects.
 
     /* ATM Operation - This is business logic. */
     println("")
@@ -180,7 +227,11 @@ fun main() {
                     "2" -> {
                         pause()
                         balance =
-                            depositMoney(balance) // I gave the Deposit Department the current balance, and now I'm storing the updated balance.
+                            depositMoney(
+                                accountNumber,
+                                balance,
+                                transactionHistory
+                            ) // I gave the Deposit Department the current balance, and now I'm storing the updated balance.
                     }
 
                     "3" -> {

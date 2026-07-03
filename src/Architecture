@@ -1,4 +1,5 @@
 First understand the business. Then design the data. Finally choose the Kotlin data structure.
+Good software architecture is what makes a project easy to extend and maintain.
 
 main()
 │
@@ -146,3 +147,7 @@ Currently placeholders:
 This separation is used in professional applications.
 
 first feature with real business logic And I want to start with... Deposit - Deposit is our first state-changing operation
+
+Package	    |   Used For
+java.time   |   📅 Dates, 🕒 Times, 📆 Date-Time, 🌍 Time Zones
+kotlin.time |   ⏱️ Durations, Stopwatch, Measuring execution time
