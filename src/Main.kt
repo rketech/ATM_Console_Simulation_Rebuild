@@ -179,11 +179,12 @@ fun changePin() {
     println("Change pin feature is under development.")
 }
 
-fun miniStatement(transactionHistory: MutableList<Transaction>) {
+fun miniStatement(transactionHistory: List<Transaction>) {
     printLongLine()
     println("           Mini Statement")
     printLongLine()
     pause()
+    /* This is called a Guard Clause. Instead of nesting everything inside an else, you exit early. */
     if (transactionHistory.isEmpty()) {
         println("No Transaction Found.")
         return // This prevents unnecessary looping.
@@ -193,7 +194,7 @@ fun miniStatement(transactionHistory: MutableList<Transaction>) {
         println("")
         println("Transaction ID     :   ${transaction.transactionId}")
         pause()
-        println("Date | Time        :   ${transaction.transactionDate +" "+ transaction.transactionTime}")
+        println("Date | Time        :   ${transaction.transactionDate} ${transaction.transactionTime}")
         pause()
         println("Account Number     :   ${transaction.accountNumber}")
         pause()
@@ -203,7 +204,7 @@ fun miniStatement(transactionHistory: MutableList<Transaction>) {
         pause()
         println("Status             :   ${transaction.transactionStatus}")
         println("")
-        println("Status             :   ${transaction.availableBalance}")
+        println("Available Balance  :   ${transaction.availableBalance}")
         println("")
     }
     printLongLine()
