@@ -65,6 +65,7 @@ fun printTransactionReceipt(previousBalance: Double, transaction: Transaction) {
     println("Returning to Main Menu...")
 }
 
+
 /* displayWelcomeHeader function once per session */
 fun displayWelcomeHeader(customerName: String, accountNumber: String) {
     // Display welcome message
@@ -178,8 +179,34 @@ fun changePin() {
     println("Change pin feature is under development.")
 }
 
-fun miniStatement() {
-    println("Mini statement feature is under development.")
+fun miniStatement(transactionHistory: MutableList<Transaction>) {
+    printLongLine()
+    println("           Mini Statement")
+    printLongLine()
+    pause()
+    if (transactionHistory.isEmpty()) {
+        println("No Transaction Found.")
+        return // This prevents unnecessary looping.
+    }
+
+    for (transaction in transactionHistory) {
+        println("")
+        println("Transaction ID     :   ${transaction.transactionId}")
+        pause()
+        println("Date | Time        :   ${transaction.transactionDate +" "+ transaction.transactionTime}")
+        pause()
+        println("Account Number     :   ${transaction.accountNumber}")
+        pause()
+        println("Type               :   ${transaction.transactionType}")
+        pause()
+        println("Amount             :   ${transaction.transactionAmount}")
+        pause()
+        println("Status             :   ${transaction.transactionStatus}")
+        println("")
+        println("Status             :   ${transaction.availableBalance}")
+        println("")
+    }
+    printLongLine()
 }
 
 fun updatePhoneNumber() {
@@ -277,7 +304,7 @@ fun main() {
 
                     "6" -> {
                         pause()
-                        miniStatement()
+                        miniStatement(transactionHistory)
                     }
 
                     "7" -> {
